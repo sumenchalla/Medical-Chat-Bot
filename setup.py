@@ -16,7 +16,7 @@ def get_requirements(file_path:str)->List[str]:
 
 
 setup(
-    name='DiamondPricePrediction',
+    name='ML-Chat-Bot',
     version='0.0.1',
     author='sumen',
     author_email='sumenchalla51643@gmail.com',
