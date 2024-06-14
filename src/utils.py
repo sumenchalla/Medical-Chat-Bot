@@ -8,7 +8,7 @@ import yaml
 from pathlib import Path
 
 
-from sklearn.metrics import r2_score,mean_absolute_error,mean_squared_error
+from sklearn.metrics import classification_report,accuracy_score
 
 def save_object(file_path, obj):
     try:
@@ -37,7 +37,7 @@ def evaluate_model(X_train,y_train,X_test,y_test,models):
 
             # Get R2 scores for train and test data
             #train_model_score = r2_score(ytrain,y_train_pred)
-            test_model_score = r2_score(y_test,y_test_pred)
+            test_model_score = accuracy_score(y_test,y_test_pred)
 
             report[list(models.keys())[i]] =  test_model_score
 
