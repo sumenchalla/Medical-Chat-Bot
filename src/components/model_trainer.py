@@ -42,9 +42,9 @@ class ModelTrainer:
             
             best_model = models[best_model_name]
 
-            print(f'Best Model Found , Model Name : {best_model_name} , R2 Score : {best_model_score}')
+            print(f'Best Model Found , Model Name : {best_model_name} , Accuracy : {best_model_score}')
             print('\n====================================================================================\n')
-            logging.info(f'Best Model Found , Model Name : {best_model_name} , R2 Score : {best_model_score}')
+            logging.info(f'Best Model Found , Model Name : {best_model_name} , Accuracy : {best_model_score}')
 
             save_object(
                  file_path=join(self.ingestion.unzip_path,"model.pkl"),

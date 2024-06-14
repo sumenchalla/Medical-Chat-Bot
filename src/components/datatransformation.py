@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 import sys,os
 from src.config.configuration import DataTransformationconfig,dataingestionconfig
 from os.path import join
+import ast
 
 
 class DataTransformation:
@@ -12,7 +13,7 @@ class DataTransformation:
         self.config = DataTransformationconfig()
         self.injection = dataingestionconfig()
 
-    def transform_data(self):
+    def initiate_datatransformation(self):
         logging.info("Features gropuing for processing is initited")
 
         try:
@@ -42,7 +43,7 @@ class DataTransformation:
                 
             #converting the symptoms into numerical 
             word_dict={}
-            j=0
+            j=1
             for i in total_words:
                 if i not in word_dict.keys():
                     word_dict[i]=j
@@ -50,25 +51,33 @@ class DataTransformation:
 
             logging.info("Initiated to converstion of symptomps into numerical features")
             
-            df["features"]=""
+            df["features"]= None
             for i,lst in enumerate(df["symptoms"]):
-                features=[]
+                features=[] 
                 for j in lst:
                     features.append(word_dict[j])
                 df["features"][i] = features
-            df.to_csv(join(self.injection.unzip_path,"dataset.csv"))
+
             logging.info("converstion of symptomps into numerical features is done")
 
+            # adding padding
+            for i in range(len(list(df["features"]))):
+                lst = list(df["features"])[i]
+                for j in range((17-len(lst))):
+                    lst.append(0)
+                df["features"][i] = lst
+
+            logging.info("Padding done succesfully")
+
+            Xtrain= df["features"][:3000].tolist()
+            Ytrain = df["Disease"][:3000].tolist()
+            Xtest= df["features"][3000:].tolist()
+            Ytest = df["Disease"][3000:].tolist()
+
+            
+
         except Exception as e:
-            logging.info("Error occured during feature grouping")
-
-    def initiate_datatransformation(self):
-        train_data= pd.read_csv(join(self.injection.unzip_path,"train.csv"),on_bad_lines="skip")
-        test_data= pd.read_csv(join(self.injection.unzip_path,"test.csv"),on_bad_lines="skip")
-
-        xtrain = train_data["features"]
-        ytrain = train_data["Disease"]
-        xtest = test_data["features"]
-        ytest = test_data["Disease"]
-
-        return xtrain,ytrain,xtest,ytest
+            logging.info("Error occured while data transformation")
+            raise e
+        
+        return Xtrain,Ytrain,Xtest,Ytest
