@@ -5,3 +5,4 @@ dataingestion_config :
   source_url: "" #mention the url from where you want to download the dataset
   download_path : "artifacts/data_ingestion/data.zip"
   unzip_path : "artifacts/data_ingestion"
+  
