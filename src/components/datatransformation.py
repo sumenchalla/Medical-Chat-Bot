@@ -9,8 +9,10 @@ import json
 import nltk
 from nltk.corpus import stopwords
 nltk.download('stopwords')
+from nltk.stem import PorterStemmer
+nltk.download('punkt')
 
-
+stemmer = PorterStemmer()
 
 class DataTransformation:
     def __init__(self):
@@ -43,8 +45,9 @@ class DataTransformation:
                 for j in df["symptoms"][i]:
                     for k in j:
                         if k not in stopword:
-                            lst.append(k)
+                            lst.append(stemmer.stem(k))
 
+                lst = sorted(lst)
                 df["symptoms"][i] = lst
 
             
@@ -93,7 +96,7 @@ class DataTransformation:
             X= df["features"].tolist()
             Y = df["Disease"].tolist()
 
-            Xtrain,Xtest,Ytrain,Ytest= train_test_split(X,Y,test_size=0.2)
+            Xtrain,Xtest,Ytrain,Ytest= train_test_split(X,Y,test_size=0.2,random_state=17)
 
             with open(join(self.injection.unzip_path,'word_vec.json'), 'w') as file:
                 json.dump(word_dict,file)
