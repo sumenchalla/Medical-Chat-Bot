@@ -19,6 +19,11 @@ Just enter the symptoms that you are feeling currently. This model will predict 
 
 
 ## working images
+![image](https://github.com/sumenchalla/Medical-Chat-Bot/assets/76592358/99f73c18-60e1-41b5-a586-75a244abe5c9)
+![image](https://github.com/sumenchalla/ML-AI_basics/assets/76592358/bd9c0a08-b8ac-4f69-bce8-dd71a05264cb)
+![image](https://github.com/sumenchalla/ML-AI_basics/assets/76592358/3c7d5c58-1b52-42f7-82f8-bd09418fd46b)
+![image](https://github.com/sumenchalla/ML-AI_basics/assets/76592358/f76b1ba6-8d12-40ce-a3ac-5e51bb4d4b65)
+
 
 
 
