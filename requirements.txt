@@ -1,10 +1,13 @@
 pandas
 numpy
 seaborn
-flask
 scikit-learn
 mlflow
 python-box
 ensure
-
+streamlit
+zipfile
+json
+nltk
+re
 -e .
